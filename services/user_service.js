@@ -1,4 +1,4 @@
-const userDao = require("../usersModel/userDao");
+const userDao = require("../models/user_dao");
 const bcrypt = require("bcryptjs");
 
 const signup = async (
