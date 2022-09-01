@@ -11,12 +11,9 @@ const myDataSource = new DataSource({
 
 myDataSource
   .initialize()
-  .then(() => {
-    console.log("Data Source has been initialized!");
-  })
+  .then(() => {})
   .catch((err) => {
     console.log(err);
-    console.log("Database initiate fail");
   });
 
 const getProductDetailById = async (groupCode, detailCode, id) => {
