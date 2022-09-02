@@ -11,9 +11,11 @@ const {
   reviewDeleteController,
 } = require("../controllers/review_controller");
 
+const validateToken = require('../middlewares/validate_token')
+
 const router = express.Router();
 
-router.get("/nav_category", navCategoryController);
+router.get("/nav_category", validateToken.validateToken, navCategoryController);
 router.get("/detail/:id", productsDetailController);
 router.post("/reviews", reviewCreateController);
 router.delete("/reviews", reviewDeleteController);

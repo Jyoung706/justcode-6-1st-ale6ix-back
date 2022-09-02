@@ -49,4 +49,16 @@ const createUser = async (
   }
 };
 
-module.exports = { createUser };
+const getUserByEmail = async (account)=>{
+  const [user] =  await myDataSource.query( // user에 대괄호를 씌워주면 첫번째 값만 가져온다
+    ` SELECT id, account, user_password FROM users WHERE account = ?`, [account])
+  return user
+}
+
+const getUserById = async (user_id)=>{
+  const [user] =  await myDataSource.query( // user에 대괄호를 씌워주면 첫번째 값만 가져온다
+    ` SELECT id, account, user_password FROM users WHERE id = ?`, [user_id])
+  return user
+}
+
+module.exports = { createUser, getUserByEmail, getUserById };
