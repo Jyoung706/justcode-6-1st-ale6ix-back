@@ -6,18 +6,15 @@ const {
   productsDetailController,
 } = require("../controllers/products_detail_controller");
 
-const {
-  reviewCreateController,
-  reviewDeleteController,
-} = require("../controllers/review_controller");
+const reviewController = require("../controllers/review_controller");
 
-const validateToken = require('../middlewares/validate_token')
+const validateToken = require("../middlewares/validate_token");
 
 const router = express.Router();
 
 router.get("/nav_category", validateToken.validateToken, navCategoryController);
 router.get("/detail/:id", productsDetailController);
-router.post("/reviews", reviewCreateController);
-router.delete("/reviews", reviewDeleteController);
+router.post("/reviews", reviewController.reviewCreateController);
+router.delete("/reviews", reviewController.reviewDeleteController);
 
 module.exports = router;
