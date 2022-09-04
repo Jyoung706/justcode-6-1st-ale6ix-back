@@ -35,7 +35,6 @@ const createReview = async (user_id, product_id, title, content) => {
 
   if (title.length > 255) {
     const error = new Error("ERROR : title Too long");
-    console.log(error.statusCode);
     error.statusCode = 400;
     throw error;
   } else if (content.length > 500) {

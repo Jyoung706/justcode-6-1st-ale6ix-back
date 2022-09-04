@@ -3,7 +3,8 @@ const userService = require("../services/user_service");
 const accountCheck = async (req, res) => {
   const { account } = req.body;
   if (!account) {
-    res.status(400).json({ message: "NO INPUT DATA" });
+    res.status(400 || 500).json({ message: "NO INPUT DATA" });
+    return;
   }
   try {
     await userService.accountCheck(account);
@@ -18,7 +19,7 @@ const signupController = async (req, res) => {
   let { account, password, name, email, phone_number, birth } = req.body;
 
   if (!(account && password && name && email && phone_number)) {
-    res.status(400).json({ ERROR: "CHECK NECESSARY INPUT DATA" });
+    res.status(400 || 500).json({ ERROR: "CHECK NECESSARY INPUT DATA" });
     return;
   }
 

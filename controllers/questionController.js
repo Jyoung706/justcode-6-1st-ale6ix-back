@@ -5,10 +5,10 @@ const questionCreateController = async (req, res) => {
   const { product_id, title, content } = req.body;
 
   if (!title) {
-    res.status(400).json({ ERROR: "CHECK TITLE DATA" });
+    res.status(400 || 500).json({ ERROR: "CHECK TITLE DATA" });
     return;
   } else if (!content) {
-    res.status(400).json({ ERROR: "CHECK CONTENT DATA" });
+    res.status(400 || 500).json({ ERROR: "CHECK CONTENT DATA" });
     return;
   }
 
