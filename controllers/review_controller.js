@@ -1,7 +1,8 @@
 const reviewService = require("../services/review_service");
 
 const reviewCreateController = async (req, res) => {
-  const { user_id, product_id, title, content } = req.body;
+  const user_id = req.foundUser.id;
+  const { product_id, title, content } = req.body;
 
   if (!title) {
     res.status(400).json({ ERROR: "CHECK TITLE DATA" });
@@ -26,11 +27,12 @@ const reviewCreateController = async (req, res) => {
 };
 
 const reviewDeleteController = async (req, res) => {
-  const { id, user_id } = req.body;
+  const user_id = req.foundUser.id;
+  const { review_id } = req.body;
 
   try {
-    await reviewService.reviewDelete(id, user_id);
-    res.status(200).json({ message: "post deleted" });
+    await reviewService.reviewDelete(user_id, review_id);
+    res.status(204).json();
   } catch (error) {
     console.log(error);
     res.status(error.statusCode).json(error.message);

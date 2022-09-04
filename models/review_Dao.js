@@ -28,7 +28,7 @@ const createReview = async (user_id, product_id, title, content) => {
   );
 
   if (userPayCheck.length === 0) {
-    const error = new Error("ERROR: NOT PAIED YET");
+    const error = new Error("ERROR: NOT PAID YET");
     error.statusCode = 400;
     throw error;
   }
@@ -62,15 +62,20 @@ const createReview = async (user_id, product_id, title, content) => {
   return reviewData;
 };
 
-const reviewDelete = async (id, user_id) => {
+const reviewDelete = async (user_id, review_id) => {
   const [userCheck] = await myDataSource.query(
     `SELECT id,user_id 
       FROM reviews
       WHERE id = ?
     `,
-    [id]
+    [review_id]
   );
 
+  if (!userCheck) {
+    const error = new Error("Not existing post");
+    error.statusCode = 400;
+    throw error;
+  }
   if (userCheck.user_id !== user_id) {
     const error = new Error("Unauthorized Users");
     error.statusCode = 400;
@@ -80,7 +85,7 @@ const reviewDelete = async (id, user_id) => {
   await myDataSource.query(
     `
     DELETE FROM reviews WHERE id = ?;`,
-    [id]
+    [review_id]
   );
 };
 

@@ -12,9 +12,17 @@ const validateToken = require("../middlewares/validate_token");
 
 const router = express.Router();
 
-router.get("/nav_category", validateToken.validateToken, navCategoryController);
+router.get("/nav_category", navCategoryController);
 router.get("/detail/:id", productsDetailController);
-router.post("/reviews", reviewController.reviewCreateController);
-router.delete("/reviews", reviewController.reviewDeleteController);
+router.post(
+  "/reviews",
+  validateToken.validateToken,
+  reviewController.reviewCreateController
+);
+router.delete(
+  "/reviews",
+  validateToken.validateToken,
+  reviewController.reviewDeleteController
+);
 
 module.exports = router;
