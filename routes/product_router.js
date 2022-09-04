@@ -29,7 +29,12 @@ router.delete(
 router.post(
   "/questions",
   validateToken.validateToken,
-  questionController.questionController
+  questionController.questionCreateController
+);
+router.delete(
+  "/questions",
+  validateToken.validateToken,
+  questionController.questionDeleteController
 );
 
 module.exports = router;

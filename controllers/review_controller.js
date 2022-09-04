@@ -28,7 +28,7 @@ const reviewCreateController = async (req, res) => {
 
 const reviewDeleteController = async (req, res) => {
   const user_id = req.foundUser.id;
-  const { review_id } = req.body;
+  const { review_id } = req.query;
 
   try {
     await reviewService.reviewDelete(user_id, review_id);
