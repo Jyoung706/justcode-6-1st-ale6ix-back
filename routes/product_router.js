@@ -8,6 +8,8 @@ const {
 
 const reviewController = require("../controllers/review_controller");
 
+const questionController = require("../controllers/questionController");
+
 const validateToken = require("../middlewares/validate_token");
 
 const router = express.Router();
@@ -23,6 +25,11 @@ router.delete(
   "/reviews",
   validateToken.validateToken,
   reviewController.reviewDeleteController
+);
+router.post(
+  "/questions",
+  validateToken.validateToken,
+  questionController.questionController
 );
 
 module.exports = router;
