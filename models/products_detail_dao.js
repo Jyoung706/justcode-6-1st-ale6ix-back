@@ -29,6 +29,7 @@ const getDetailPageById = async (id) => {
     `,
     [id]
   );
+
   return detailPageData;
 };
 

@@ -63,13 +63,12 @@ const createReview = async (user_id, product_id, title, content) => {
 
 const reviewDelete = async (user_id, review_id) => {
   const [userCheck] = await myDataSource.query(
-    `SELECT id,user_id 
+    `SELECT id,user_id,product_id
       FROM reviews
       WHERE id = ?
     `,
     [review_id]
   );
-
   if (!userCheck) {
     const error = new Error("Not existing post");
     error.statusCode = 400;

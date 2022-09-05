@@ -17,22 +17,22 @@ const router = express.Router();
 router.get("/nav_category", navCategoryController);
 router.get("/detail/:id", productsDetailController);
 router.post(
-  "/reviews",
+  "/detail/:id/review",
   validateToken.validateToken,
   reviewController.reviewCreateController
 );
 router.delete(
-  "/reviews",
+  "/detail/:id/review",
   validateToken.validateToken,
   reviewController.reviewDeleteController
 );
 router.post(
-  "/questions",
+  "/detail/:id/question",
   validateToken.validateToken,
   questionController.questionCreateController
 );
 router.delete(
-  "/questions",
+  "/detail/:id/question",
   validateToken.validateToken,
   questionController.questionDeleteController
 );

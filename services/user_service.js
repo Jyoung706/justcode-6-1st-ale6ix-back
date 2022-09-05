@@ -34,7 +34,7 @@ const loginUser = async (account, password) => {
   } else if (isPasswordCorrect === true) {
     // token 생성
     var token = jwt.sign({ userId: user.id }, "server_made_secret_key", {
-      expiresIn: "1h",
+      expiresIn: "3h",
     });
     return { message: "LOGIN_SUCCESS", token: token };
   }

@@ -2,7 +2,8 @@ const questionService = require("../services/questionService");
 
 const questionCreateController = async (req, res) => {
   const user_id = req.foundUser.id;
-  const { product_id, title, content } = req.body;
+  const product_id = req.params.id;
+  const { title, content } = req.body;
 
   if (!title) {
     res.status(400 || 500).json({ ERROR: "CHECK TITLE DATA" });

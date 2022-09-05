@@ -68,7 +68,6 @@ const createUser = async (
 };
 
 const getUserData = async (account) => {
-  console.log(account);
   const [userData] = await myDataSource.query(
     `
     SELECT account,user_name,email,phone_number,birth

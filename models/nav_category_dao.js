@@ -20,6 +20,7 @@ const getCategoryBygroupId = async () => {
   const categoryData = await myDataSource.query(
     `SELECT group_code.id as LargeCategoryId , 
               group_code_name as LargeCategoryName,
+              group_image_url as LargeImageUrl,
       JSON_ARRAYAGG(
         JSON_OBJECT(
           'smallCategoryId',detail_code.id,

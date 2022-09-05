@@ -1,9 +1,14 @@
 const userService = require("../services/user_service");
 
 const accountCheck = async (req, res) => {
-  const { account } = req.body;
+  const { account } = req.query;
   if (!account) {
     res.status(400 || 500).json({ message: "NO INPUT DATA" });
+    return;
+  }
+
+  if (account.length > 20) {
+    res.status(400 || 500).json({ ERROR: "too long account" });
     return;
   }
   try {
@@ -20,6 +25,14 @@ const signupController = async (req, res) => {
 
   if (!(account && password && name && email && phone_number)) {
     res.status(400 || 500).json({ ERROR: "CHECK NECESSARY INPUT DATA" });
+    return;
+  }
+  if (account.length > 20) {
+    res.status(400 || 500).json({ message: "too long account" });
+    return;
+  }
+  if (password.length > 100) {
+    res.status(400 || 500).json({ message: "too long password" });
     return;
   }
 
