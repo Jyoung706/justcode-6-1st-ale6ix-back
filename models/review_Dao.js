@@ -61,6 +61,17 @@ const createReview = async (user_id, product_id, title, content) => {
   return reviewData;
 };
 
+const getReview = async (product_id) => {
+  return myDataSource.query(
+    `SELECT account,title,content,reviews.created_at as createdAt
+       FROM reviews
+       JOIN users WHERE users.id = reviews.user_id
+       AND reviews.product_id = ?  
+  `,
+    [product_id]
+  );
+};
+
 const reviewDelete = async (user_id, review_id) => {
   const [userCheck] = await myDataSource.query(
     `SELECT id,user_id,product_id
@@ -87,4 +98,4 @@ const reviewDelete = async (user_id, review_id) => {
   );
 };
 
-module.exports = { createReview, reviewDelete };
+module.exports = { createReview, getReview, reviewDelete };

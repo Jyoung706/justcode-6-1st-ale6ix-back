@@ -45,6 +45,18 @@ const createQuestion = async (user_id, product_id, title, content) => {
   return questionData;
 };
 
+const getQuestion = async (product_id) => {
+  return myDataSource.query(
+    `
+  SELECT account,title,content,question.created_at as createdAt
+    FROM question
+    JOIN users WHERE users.id = question.user_id
+    AND question.product_id = ?  
+`,
+    [product_id]
+  );
+};
+
 const questionDelete = async (user_id, question_id) => {
   const [userCheck] = await myDataSource.query(
     `SELECT id,user_id 
@@ -72,4 +84,4 @@ const questionDelete = async (user_id, question_id) => {
   );
 };
 
-module.exports = { createQuestion, questionDelete };
+module.exports = { createQuestion, getQuestion, questionDelete };

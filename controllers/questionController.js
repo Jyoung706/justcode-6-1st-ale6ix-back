@@ -27,6 +27,12 @@ const questionCreateController = async (req, res) => {
   }
 };
 
+const getQuestionController = async (req, res) => {
+  const product_id = req.params.id;
+  const questionData = await questionService.getQuestionService(product_id);
+  res.status(200).json({ questionData });
+};
+
 const questionDeleteController = async (req, res) => {
   const user_id = req.foundUser.id;
   const { question_id } = req.query;
@@ -39,4 +45,8 @@ const questionDeleteController = async (req, res) => {
     res.status(error.statusCode).json(error.message);
   }
 };
-module.exports = { questionCreateController, questionDeleteController };
+module.exports = {
+  questionCreateController,
+  getQuestionController,
+  questionDeleteController,
+};

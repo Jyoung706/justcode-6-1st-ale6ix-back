@@ -27,6 +27,12 @@ const reviewCreateController = async (req, res) => {
   }
 };
 
+const getReviewController = async (req, res) => {
+  const product_id = req.params.id;
+  const reviewData = await reviewService.getReviewService(product_id);
+  res.status(200).json({ reviewData });
+};
+
 const reviewDeleteController = async (req, res) => {
   const user_id = req.foundUser.id;
   const { review_id } = req.query;
@@ -39,4 +45,8 @@ const reviewDeleteController = async (req, res) => {
   }
 };
 
-module.exports = { reviewCreateController, reviewDeleteController };
+module.exports = {
+  reviewCreateController,
+  getReviewController,
+  reviewDeleteController,
+};
