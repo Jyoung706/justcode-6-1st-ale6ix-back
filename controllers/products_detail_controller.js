@@ -7,6 +7,9 @@ const productsDetailController = async (req, res) => {
       res.status(400 || 500).json({ ERROR: "Not existing product" });
       return;
     }
+    if (!id) {
+      res.status(400 || 500).json({ ERROR: "CHECK Id Data" });
+    }
     const productDetail = await productsDetailService.productDetail(id);
 
     res.status(200).json({ productDetail });
