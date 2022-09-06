@@ -54,6 +54,7 @@ const getProductList = async (groupCodeId, detailCodeId, offset, limit)=>{
         AND dc.is_active = 1
         AND pd.group_code_id = ?
         AND pd.detail_code_id =?
+        ORDER BY pd.id DESC
         LIMIT ?, ?
     ;`, [groupCodeId, detailCodeId, offset*1, limit*1])
     
@@ -91,6 +92,7 @@ const getgroupProductList = async (groupCodeId, offset, limit)=>{
         WHERE gc.is_active = 1
         AND dc.is_active = 1
         AND pd.group_code_id = ?
+        ORDER BY pd.id DESC
         LIMIT ?, ?
     ;`, [groupCodeId, offset*1, limit*1])
 
@@ -127,6 +129,7 @@ const getProductSearchList = async (keyword)=>{
     WHERE pd.product_name LIKE  CONCAT('%', ? ,'%')
     OR dc.detail_code_name LIKE  CONCAT('%', ? ,'%')
     OR gc.group_code_name  LIKE  CONCAT('%', ? ,'%')
+    ORDER BY pd.id DESC
     ;`, [keyword, keyword, keyword])
     
     return searchProductList
@@ -145,7 +148,9 @@ const getRecommendProductList = async ()=>{
     FROM products pd
     JOIN group_code gc on pd.group_code_id = gc.id 
     JOIN detail_code dc on pd.detail_code_id = dc.id 
-    WHERE pd.recommend = 1 `)
+    WHERE pd.recommend = 1 
+    ORDER BY pd.id DESC
+    `)
     
     return RecommendProductList
 }
