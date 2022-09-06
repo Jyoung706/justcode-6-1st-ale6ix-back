@@ -87,4 +87,35 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { accountCheck, signupController, loginUser };
+const user = async (req, res) => {
+  const {id} =  req.foundUser; 
+
+  const haskey = {id:false}; 
+    const requireKey = Object.keys(haskey);
+
+    Object.entries(req.foundUser).forEach((keyValue) => {
+    const [key, value] = keyValue;
+    if (requireKey.includes(key) && value){
+        haskey[key] = true;
+    }
+    })
+    const haskeyArray = Object.entries(haskey);
+    for(let i =0; i<haskeyArray.length;i++){
+    const [key, value] = haskeyArray[i];
+    if(!value){
+        res.status(400).json({ message: `${key} 이/가 없습니다` })
+        return;
+    }
+    }
+
+    try{
+        const result = await userService.user(id);
+        res.status(200).json({user : result , message: "success_getUser" })
+    }catch(err){
+        console.log(err);
+        res.status(500).json(err)
+    }
+  
+}
+
+module.exports = { accountCheck, signupController, loginUser, user };

@@ -51,4 +51,15 @@ const getUserById = async (user_id) => {
   return user;
 };
 
-module.exports = { accountCheck, signup, loginUser, getUserById };
+const user = async (user_id) => {
+  const user = await userDao.getUser(user_id);
+
+  if(!user){
+      const error = new Error ("USER_UNDEFINED")
+      error.statusCode = 400
+      throw error
+  }
+  return user
+}
+
+module.exports = { accountCheck, signup, loginUser, getUserById, user };

@@ -101,10 +101,17 @@ const getUserById = async (user_id) => {
   return user;
 };
 
+const getUser = async (user_id)=>{
+  const [user] =  await myDataSource.query( // user에 대괄호를 씌워주면 첫번째 값만 가져온다
+    ` SELECT id, account  FROM users WHERE id = ?`, [user_id])
+  return user
+}
+
 module.exports = {
   getAccountData,
   createUser,
   getUserData,
   getUserByEmail,
   getUserById,
+  getUser
 };

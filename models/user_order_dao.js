@@ -31,6 +31,7 @@ const getUserOrderCartList = async (user_id)=>{
     JOIN products p ON uo.product_id = p.id 
     WHERE uo.order_status_id = 1
     AND uo.user_id = ?
+    ORDER BY uo.created_at DESC
     ;`, [user_id])
     
     return userOrderCartList
