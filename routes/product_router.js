@@ -1,6 +1,6 @@
 const express = require("express");
 const productListController = require("../controllers/product_list_controller ");
-// const userOrderController = require("../controllers/user_order_controller");
+const userOrderController = require("../controllers/user_order_controller");
 const {
   navCategoryController,
 } = require("../controllers/nav_category_controller");
@@ -52,5 +52,11 @@ router.get("/search", productListController.productSearch);
 router.get("/recommendList", productListController.recommendProductList);
 router.get("/newList", productListController.newProductList);
 
+// 유저 account 별 user_order 테이블
+router.get("/cart", validateToken.validateToken, userOrderController.userOrderCartList);
+router.post("/cart", validateToken.validateToken, userOrderController.userCartAdd);
+router.patch("/cart", validateToken.validateToken, userOrderController.userCartUpdate);
+router.delete("/cart", validateToken.validateToken, userOrderController.userCartDelete);
+router.delete("/cart/all", validateToken.validateToken, userOrderController.userCartEmpty);
 
 module.exports = router;

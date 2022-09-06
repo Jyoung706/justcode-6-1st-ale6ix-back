@@ -8,12 +8,12 @@ const myDataSource = new DataSource({
     database: process.env.TYPEORM_DATABASE
 })
 
-myDataSource.initialize().then(() => {
-    console.log("Data Source has been initialized!");
-}).catch((err)=> {
-    console.log(err);
-    console.log("Database initiate fail");
-})
+myDataSource
+    .initialize()
+    .then(() => {})
+    .catch((err) => {
+        console.log(err);
+    });
 
 const getProductDetailCategoryByGroupode = async (groupCodeId)=>{
     const ByGroupcode = await myDataSource.query(`

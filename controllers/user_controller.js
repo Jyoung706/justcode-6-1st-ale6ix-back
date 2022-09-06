@@ -80,7 +80,7 @@ const loginUser = async (req, res) => {
 
   try {
     const result = await userService.loginUser(account, password);
-    res.status(201).json({ message: result });
+    res.status(201).json(result);
   } catch (err) {
     console.log(err);
     res.status(err.statusCode || 500).json({ message: err.message });
