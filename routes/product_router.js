@@ -1,4 +1,6 @@
 const express = require("express");
+const productListController = require("../controllers/product_list_controller ");
+// const userOrderController = require("../controllers/user_order_controller");
 const {
   navCategoryController,
 } = require("../controllers/nav_category_controller");
@@ -41,5 +43,14 @@ router.delete(
   validateToken.validateToken,
   questionController.questionDeleteController
 );
+
+// 상품리스트 / 검색 API
+router.get("/List", productListController.productList); 
+router.get("/search", productListController.productSearch);
+
+// 메인 신상품/추천 목록 리스트
+router.get("/recommendList", productListController.recommendProductList);
+router.get("/newList", productListController.newProductList);
+
 
 module.exports = router;
