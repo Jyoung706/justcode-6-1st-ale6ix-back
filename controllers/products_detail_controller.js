@@ -9,6 +9,7 @@ const productsDetailController = async (req, res) => {
     }
     if (!id) {
       res.status(400 || 500).json({ ERROR: "CHECK Id Data" });
+      return;
     }
     const productDetail = await productsDetailService.productDetail(id);
 
