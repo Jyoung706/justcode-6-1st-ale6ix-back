@@ -19,29 +19,47 @@ myDataSource
     console.log("Database initiate fail");
   });
 
+const getAccountData = async (account) => {
+  const [accountData] = await myDataSource.query(
+    `
+      SELECT account 
+        FROM users 
+        WHERE account = ?`,
+    [account]
+  );
+  if (!accountData) {
+    return;
+  } else if (accountData.account === account) {
+    const error = new Error("already exist account");
+    error.statusCode = 400;
+    throw error;
+  }
+};
+
 const createUser = async (
   account,
-  user_password,
-  user_name,
+  password,
+  name,
   email,
-  phone_number
+  phone_number,
+  birth
 ) => {
   const [userCheck] = await myDataSource.query(
     `SELECT account from users where account = ?`,
     [account]
   );
   if (!userCheck) {
-    const userData = await myDataSource.query(
+    await myDataSource.query(
       `INSERT INTO users(
         account,
         user_password,
         user_name,
         email,
-        phone_number
-        ) VALUES (?,?,?,?,?);`,
-      [account, user_password, user_name, email, phone_number]
+        phone_number,
+        birth
+        ) VALUES (?,?,?,?,?,?);`,
+      [account, password, name, email, phone_number, birth]
     );
-    return userData;
   } else if (userCheck.account === account) {
     let error = new Error("ERROR : already has user data");
     error.statusCode = 400;
@@ -49,16 +67,44 @@ const createUser = async (
   }
 };
 
-const getUserByEmail = async (account)=>{
-  const [user] =  await myDataSource.query( // user에 대괄호를 씌워주면 첫번째 값만 가져온다
-    ` SELECT id, account, user_password FROM users WHERE account = ?`, [account])
-  return user
-}
+const getUserData = async (account) => {
+  const [userData] = await myDataSource.query(
+    `
+    SELECT account,user_name,email,phone_number,birth
+      FROM users WHERE account = ?;  
+  `,
+    [account]
+  );
 
-const getUserById = async (user_id)=>{
-  const [user] =  await myDataSource.query( // user에 대괄호를 씌워주면 첫번째 값만 가져온다
-    ` SELECT id, account, user_password FROM users WHERE id = ?`, [user_id])
-  return user
-}
+  if (!userData.birth) {
+    birth = null;
+  }
 
-module.exports = { createUser, getUserByEmail, getUserById };
+  return userData;
+};
+
+const getUserByEmail = async (account) => {
+  const [user] = await myDataSource.query(
+    // user에 대괄호를 씌워주면 첫번째 값만 가져온다
+    ` SELECT id, account, user_password FROM users WHERE account = ?`,
+    [account]
+  );
+  return user;
+};
+
+const getUserById = async (user_id) => {
+  const [user] = await myDataSource.query(
+    // user에 대괄호를 씌워주면 첫번째 값만 가져온다
+    ` SELECT id, account, user_password FROM users WHERE id = ?`,
+    [user_id]
+  );
+  return user;
+};
+
+module.exports = {
+  getAccountData,
+  createUser,
+  getUserData,
+  getUserByEmail,
+  getUserById,
+};

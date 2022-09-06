@@ -1,6 +1,6 @@
-const reviewService = require("../services/review_service");
+const questionService = require("../services/questionService");
 
-const reviewCreateController = async (req, res) => {
+const questionCreateController = async (req, res) => {
   const user_id = req.foundUser.id;
   const product_id = req.params.id;
   const { title, content } = req.body;
@@ -14,39 +14,39 @@ const reviewCreateController = async (req, res) => {
   }
 
   try {
-    const reviewData = await reviewService.reviewCreateService(
+    const questionData = await questionService.questionCreateService(
       user_id,
       product_id,
       title,
       content
     );
-    res.status(200).json({ message: "post created", reviewData });
+    res.status(200).json({ message: "post created", questionData });
   } catch (error) {
     console.log(error);
     res.status(error.statusCode).json(error.message);
   }
 };
 
-const getReviewController = async (req, res) => {
+const getQuestionController = async (req, res) => {
   const product_id = req.params.id;
-  const reviewData = await reviewService.getReviewService(product_id);
-  res.status(200).json({ reviewData });
+  const questionData = await questionService.getQuestionService(product_id);
+  res.status(200).json({ questionData });
 };
 
-const reviewDeleteController = async (req, res) => {
+const questionDeleteController = async (req, res) => {
   const user_id = req.foundUser.id;
-  const { review_id } = req.query;
+  const { question_id } = req.query;
+
   try {
-    await reviewService.reviewDelete(user_id, review_id);
+    await questionService.questionDelete(user_id, question_id);
     res.status(204).json();
   } catch (error) {
     console.log(error);
     res.status(error.statusCode).json(error.message);
   }
 };
-
 module.exports = {
-  reviewCreateController,
-  getReviewController,
-  reviewDeleteController,
+  questionCreateController,
+  getQuestionController,
+  questionDeleteController,
 };

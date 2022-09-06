@@ -28,14 +28,13 @@ const createReview = async (user_id, product_id, title, content) => {
   );
 
   if (userPayCheck.length === 0) {
-    const error = new Error("ERROR: NOT PAIED YET");
+    const error = new Error("ERROR: NOT PAID YET");
     error.statusCode = 400;
     throw error;
   }
 
   if (title.length > 255) {
     const error = new Error("ERROR : title Too long");
-    console.log(error.statusCode);
     error.statusCode = 400;
     throw error;
   } else if (content.length > 500) {
@@ -62,15 +61,30 @@ const createReview = async (user_id, product_id, title, content) => {
   return reviewData;
 };
 
-const reviewDelete = async (id, user_id) => {
+const getReview = async (product_id) => {
+  return myDataSource.query(
+    `SELECT account,title,content,reviews.created_at as createdAt
+       FROM reviews
+       JOIN users WHERE users.id = reviews.user_id
+       AND reviews.product_id = ?  
+  `,
+    [product_id]
+  );
+};
+
+const reviewDelete = async (user_id, review_id) => {
   const [userCheck] = await myDataSource.query(
-    `SELECT id,user_id 
+    `SELECT id,user_id,product_id
       FROM reviews
       WHERE id = ?
     `,
-    [id]
+    [review_id]
   );
-
+  if (!userCheck) {
+    const error = new Error("Not existing post");
+    error.statusCode = 400;
+    throw error;
+  }
   if (userCheck.user_id !== user_id) {
     const error = new Error("Unauthorized Users");
     error.statusCode = 400;
@@ -80,8 +94,8 @@ const reviewDelete = async (id, user_id) => {
   await myDataSource.query(
     `
     DELETE FROM reviews WHERE id = ?;`,
-    [id]
+    [review_id]
   );
 };
 
-module.exports = { createReview, reviewDelete };
+module.exports = { createReview, getReview, reviewDelete };

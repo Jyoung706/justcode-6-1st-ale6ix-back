@@ -1,17 +1,18 @@
 const productsDetailService = require("../services/products_detail_service");
 
 const productsDetailController = async (req, res) => {
-  const { groupCode, detailCode } = req.query;
-  const id = req.params.id;
+  const id = Number(req.params.id);
   try {
-    const productDetail = await productsDetailService.productDetail(
-      groupCode,
-      detailCode,
-      id
-    );
+    if (id > 79) {
+      res.status(400 || 500).json({ ERROR: "Not existing product" });
+      return;
+    }
+    const productDetail = await productsDetailService.productDetail(id);
+
     res.status(200).json({ productDetail });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
+    res.status(error.statusCode).json(error.message);
   }
 };
 
