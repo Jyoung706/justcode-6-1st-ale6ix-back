@@ -9,6 +9,6 @@ app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
 });
 
-server.listen(4000, () => {
-  console.log(`server start : http://localhost:4000`);
+server.listen(8000, () => {
+  console.log(`server start : http://localhost:8000`);
 });
