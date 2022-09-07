@@ -107,11 +107,25 @@ const getUser = async (user_id)=>{
   return user
 }
 
+const getUserOrderCartCount = async (user_id)=>{
+  const getUserOrderCartCount = await myDataSource.query(`
+  SELECT COUNT(uo.id) AS count
+  FROM user_order uo 
+  JOIN products p ON uo.product_id = p.id 
+  WHERE uo.order_status_id = 1
+  AND uo.user_id = ?
+  ORDER BY uo.created_at DESC
+  ;`, [user_id])
+  
+  return getUserOrderCartCount
+}
+
 module.exports = {
   getAccountData,
   createUser,
   getUserData,
   getUserByEmail,
   getUserById,
-  getUser
+  getUser,
+  getUserOrderCartCount
 };
