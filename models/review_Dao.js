@@ -63,10 +63,14 @@ const createReview = async (user_id, product_id, title, content) => {
 
 const getReview = async (product_id) => {
   return myDataSource.query(
-    `SELECT account,title,content,reviews.created_at as createdAt
-       FROM reviews
-       JOIN users WHERE users.id = reviews.user_id
-       AND reviews.product_id = ?  
+    `SELECT rev.id as review_id
+      ,u.account
+      ,rev.title
+      ,rev.content
+      ,rev.created_at as createdAt
+    FROM reviews rev
+    JOIN users u WHERE u.id = rev.user_id
+    AND rev.product_id = ?
   `,
     [product_id]
   );
