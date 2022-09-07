@@ -58,6 +58,7 @@ const user = async (user_id) => {
       error.statusCode = 400
       throw error
   }
+  // 장바구니 수량
   const getUserOrderCartCount = await userDao.getUserOrderCartCount(user_id);
   user.cartCount=getUserOrderCartCount[0].count
   return user
