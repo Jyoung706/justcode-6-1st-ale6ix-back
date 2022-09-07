@@ -48,7 +48,7 @@ const createQuestion = async (user_id, product_id, title, content) => {
 const getQuestion = async (product_id) => {
   return myDataSource.query(
     `
-  SELECT account,title,content,question.created_at as createdAt
+  SELECT question.id,account,title,content,question.created_at as createdAt
     FROM question
     JOIN users WHERE users.id = question.user_id
     AND question.product_id = ?  
