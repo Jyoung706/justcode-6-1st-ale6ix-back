@@ -6,13 +6,15 @@ const { AUTH_TOKEN_SALT } = process.env;
 const validateToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
+    if (!token) res.status(400).json({ message: "TOKEN_MUST_BE_PROVIDED" });
     const { userId } = jwt.verify(token, "server_made_secret_key");
     const foundUser = await userService.getUserById(userId);
     if (!foundUser) res.status(404).json({ message: "USER_NOT_FOUND" });
     req.foundUser = foundUser;
     next();
-  } catch (err) {
-    next(err);
+  } catch(err) {
+    console.log(err)
+    res.status(400).json({ message: "TOKEN_EXPIRED" });
   }
 };
 
