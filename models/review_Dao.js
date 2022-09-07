@@ -62,6 +62,7 @@ const createReview = async (user_id, product_id, title, content) => {
 };
 
 const getReview = async (product_id) => {
+  // 리뷰 id 가져오도록 수정
   return myDataSource.query(
     `SELECT rev.id as review_id
       ,u.account
