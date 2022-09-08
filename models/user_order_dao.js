@@ -93,6 +93,7 @@ const cartAllDelete = async (id)=>{
     DELETE
     FROM user_order
     WHERE user_id = ?
+    AND order_status_id = 1
     ;`, [id])
     
     return userOrderCartList
