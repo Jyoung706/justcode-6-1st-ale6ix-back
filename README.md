@@ -1,9 +1,10 @@
 # ALE6IX PROJECT
 
-## Ale6ix 프로젝트 Front-end/Back-end 소개
+## Ale6ix 프로젝트 소개
 
 - 해외 유명 디자이너 브랜드 👉[ALESSI](http://alessi.co.kr) 를 클론 코딩 하였습니다.
-- 프로젝트 내의 기간동안 세션 복습과 새로운 기능을 도전해 보고자 디자인은 클론코딩 하였고 기능을 구현하는 데에 중점을 두었습니다.
+- 처음 시도해보는 프로젝트인 만큼 기능이 너무 어렵지 않은 사이트를 선정하여 프로젝트를 했습니다. <br/>디자인은 원래의 홈페이지를 참고하여 클론코딩을 했고 기능의 경우 스스로 생각하여 개발을 했습니다.
+- 프로젝트 내의 기간동안 부트캠프에서 배운 내용을 복습하며 부트캠프를 하며 구현해보지 못했던 기능들을 구현해보고자 학습목적에 의의를 두었습니다.
 
 ### 개발 인원 및 기간
 
@@ -11,102 +12,45 @@
 - 개발 인원 : 프론트엔드 4명, 백엔드 2명
 - 프론트 엔드 : 김충만, 서지원, 양미옥, 이기완
 - 백엔드 : 김윤희, 전준영
-- 📌[프론트엔드 github 링크](https://github.com/wecode-bootcamp-korea/justcode-6-1st-ale6ix-front)
-- 📌[노션링크](https://www.notion.so/wecode/2-ALE6IX-8d773b95be3e494ab5eac1b7b3d79770)
 
 ### DB모델링
 
  ![dbdiagram](https://user-images.githubusercontent.com/108918591/189637074-f0625129-197c-4797-b49c-8d292311a169.png)
-
-
-### 데모 영상(이미지 클릭)
-
-*[![그림1](https://user-images.githubusercontent.com/108918591/189640738-9201e3a2-f085-4048-a763-36b58fb3e09c.png)
-](https://youtu.be/wADxnbQD330)*
-
-### 역할 분담
-- 김충만(FE)
-  
-  - 회원가입 페이지 구현
-  - 로그인 페이지 구현
-  - nav 바 통신 연결
-- 서지원(FE)
-  - 메인페이지 구현
-  - 장바구니 구현
-  - 검색창 구현
-- 양미옥(FE)
-  - 메인페이지 세션 구현
-  - 상품문의 / 후기 구현
-  - Nav 바 구현
-  - Footer 구현
-- 이기완(FE)
-  - Nav 동적 라우팅 구현
-  - 상품페이지 구현
-  - 상품 디테일페이지 구현
-- 김윤희(BE)
-  - 로그인 API
-  - 카테고리 별 상품 리스트 API
-  - 추천상품 / 신상품 API
-  - 상품 검색 API
-  - 장바구니 API
-- 전준영(BE)
-  - 회원가입 API
-  - nav category API
-  - 제품 상세페이지 API
-  - 후기 API
-  - 문의 API
-
+ 
 ## 적용 기술 및 구현기능
 
 ### 적용 기술
 
-> - Front-End : React.js, sass, slick, react-modal
-> - Back-End : node.js, express, jwt, Bcrypt, My SQL
-> - Common : RESTful API, git, github
+> - 주요 기술 : 
+<img src = "https://img.shields.io/badge/-JavaScript-%23F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-Node.js-%23339933?style=for-the-badge&logo=Node.js&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-Express-%23000000?style=for-the-badge&logo=Express&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-MySQL-%234479A1?style=for-the-badge&logo=MySQL&logoColor=white"/>&nbsp;
+>
+> - 사용한 라이브러리 :
+<img src = "https://img.shields.io/badge/-typeorm-orange?style=for-the-badge&logo=typeorm&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-Nodemon-%2376D04B?style=for-the-badge&logo=Nodemon&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-JSON%20Web%20Tokens-%23000000?style=for-the-badge&logo=JSON%20Web%20Tokens&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-bcrypt-%23000000?style=for-the-badge"/>&nbsp;
+<img src = "https://img.shields.io/badge/-.ENV-%23ECD53F?style=for-the-badge&logo=.ENV&logoColor=black"/> &nbsp;
+>
+> - Common :
+<img src = "https://img.shields.io/badge/-RESTful%20API-%23000000?style=for-the-badge"/>&nbsp;
+<img src = "https://img.shields.io/badge/-Postman-%23FF6C37?style=for-the-badge&logo=Postman&logoColor=white"/> &nbsp;
+<img src = "https://img.shields.io/badge/-Git-%23F05032?style=for-the-badge&logo=Git&logoColor=white"/>&nbsp;
+<img src ="https://img.shields.io/badge/-GitHub-%23181717?style=for-the-badge&logo=GitHub&logoColor=white"/>&nbsp;
+<img src = "https://img.shields.io/badge/-Slack-%234A154B?style=for-the-badge&logo=Slack&logoColor=white"/>&nbsp;
 
-### 구현기능
 
-#### 회원가입
-  - 아이디와 비밀번호 값을 프론트로부터 받아와 DB에 저장하는 API
-  - 아이디 중복체크기능 및 비밀번호를 암호화하는 기능입니다.
-#### 로그인
-  - 저장된 유저의 아이디와 패스워드가 동일한지 확인하고 일치하지 않을시에 실패 메세지와 상태코드를 반환합니다.
-  - 로그인에 성공하게 되면 성공했다는 메세지와 함깨 로컬 스토리지에 저장해서 사용 가능하도록 jwt 토큰을 반환합니다.
-  - 그리고 get me API로 로그인시 받은 토큰값이 요청이 들어오면 사용자 고유의 번호와 아이디값 사용자의 장바구니 개수를 반환합니다. (nav바에 저장되는 데이터로 사용하기 위해서)
-#### 상품 검색
-  - 키워드로 상품을 검색할 수 있도록 상품테이블과 큰 카테고리, 세부카테고리 테이블을 조인해서 like 조건문으로 상품명, 큰 카테고리명, 세부카테고리명 에서 검색이 가능합니다.
-#### 추천상품/신상품
-  - 상품에 추천 컬럼 추천 한다고 표시된 상품들을 조건으로 불러와서 프론트에 전달합니다.
-  - 상품 테이블에서 create_at 시간이 제일 최신인 상품들 정해진 개수만큼 프론트에 전달합니다.
-#### 장바구니
-  - 장바구니 목록을 불러오기 전 token 값을 검사해서 만료되지 않고, 존재하는 user인지 확인한 다음 토큰에 담긴 사용자의 id를 활용해 로그인 된 사용자의 장바구니 목록을 불러옵니다.(재고의 개수를 초과하는 개수로 상품을 담지 않도록 재고의 개수도 프론트에 넘겨줍니다.)
-  - 사용자의 장바구니 추가, 수정, 삭제가 가능하도록 구현했습니다.
-#### nav 카테고리
-  - 카테고리명과 세부 카테고리명을 DB로 부터 받아오는 API.
-  - 큰 카테고리명, 세부카테고리명 및 카테고리에 쓰일 이미지 데이터를 프론트로 제공하는 기능입니다.
-#### 카테고리별 상품리스트
-  - 큰 카테고리의 id만 들어온다면 그 조건에 맞는 데이터를, 세부 카테고리 id도 함께 들어온다면 큰 카테고리에 세부카테고리의 조건까지 일치하는 데이터를 프론트에 전달합니다.
-#### 제품 상세페이지
-  - 제품 상세페이지에 쓰일 데이터를 가져오는 API
-  - 제품의 이미지, 세부정보, 후기와 문의 데이터를 프론트로 제공하는 기능입니다.
-#### 후기
-  - 후기 불러오기,작성,삭제 API
-  - 상세페이지 내의 후기란에 있는 문의 데이터를 불러오는 기능과 작성, 삭제하는 기능입니다.
-  - 후기란에는 제품을 구매한 유저만 글을 작성할 수 있도록 구현했습니다.
-  - 글을 작성한 유저만 삭제가 가능하도록 구현했습니다.
-#### 문의
-  - 문의 불러오기, 작성,삭제 API
-  - 상세페이지 내의 문의란에 있는 문의 데이터를 불러오는 기능과 작성, 삭제하는 기능입니다.
-  - 글을 작성한 유저만 삭제가 가능하도록 구현했습니다.
+### 내가 구현한 기능
 
-## API명세
-📌 [BE김윤희 API 명세](https://documenter.getpostman.com/view/22727251/VUxNRT71)
+#### 1. 회원가입 기능
+- 
 
-📌 [BE 전준영 API명세](https://documenter.getpostman.com/view/22723440/VUxNSTYp)
+#### 2. nav 카테고리 불러오기
 
-## Reference
+#### 3. 제품 상세페이지 불러오기
 
-- 이 프로젝트는 [알레시](http://alessi.co.kr) 사이트를 참조하여 학습목적으로 만들었습니다.
-- 실무수준의 프로젝트이지만 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
-- 이 프로젝트에서 사용하고 있는 사진 모두 알레시 코리아의 동의하에 작업되었습니다.
+#### 4. 후기 불러오기,작성,삭제
 
+#### 5. 문의 불러오기, 작성,삭제
