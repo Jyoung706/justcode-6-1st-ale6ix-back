@@ -36,7 +36,10 @@ const getDetailPageById = async (id) => {
 const getDetailReviewData = async (id) => {
   const detailReview = await myDataSource.query(
     `
-    SELECT reviews.id,users.account,title,content,reviews.created_at as createdAt,reviews.updated_at as updatedAt
+    SELECT reviews.id,users.account,
+           title,content,
+           reviews.created_at as createdAt,
+           reviews.updated_at as updatedAt
       FROM reviews
       JOIN users ON users.id = reviews.user_id
       WHERE reviews.product_id = ?;
@@ -49,7 +52,10 @@ const getDetailReviewData = async (id) => {
 const getDetailQuestionData = async (id) => {
   const detailQuestion = await myDataSource.query(
     `
-    SELECT question.id,users.account,title,content,question.created_at as createdAt,question.updated_at as updatedAt
+    SELECT question.id,users.account,
+           title,content,
+           question.created_at as createdAt,
+           question.updated_at as updatedAt
 	    FROM question
 	    JOIN users ON users.id = question.user_id
       WHERE question.product_id = ?;

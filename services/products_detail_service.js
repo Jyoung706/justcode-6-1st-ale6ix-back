@@ -7,7 +7,6 @@ const productDetail = async (id) => {
 
   detailPage.detailReviews = detailReview;
   detailPage.detailQuestions = detailQuestion;
-
   return detailPage;
 };
 

@@ -35,7 +35,7 @@ const getQuestionController = async (req, res) => {
 
 const questionDeleteController = async (req, res) => {
   const user_id = req.foundUser.id;
-  const { question_id } = req.query;
+  const { question_id } = req.params;
 
   try {
     await questionService.questionDelete(user_id, question_id);
