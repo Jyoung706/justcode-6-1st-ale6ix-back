@@ -1,12 +1,8 @@
 const express = require("express");
 const productListController = require("../controllers/product_list_controller ");
 const userOrderController = require("../controllers/user_order_controller");
-const {
-  navCategoryController,
-} = require("../controllers/nav_category_controller");
-const {
-  productsDetailController,
-} = require("../controllers/products_detail_controller");
+const { navCategoryController } = require("../controllers/nav_category_controller");
+const { productsDetailController } = require("../controllers/products_detail_controller");
 
 const reviewController = require("../controllers/review_controller");
 
@@ -27,7 +23,7 @@ router.post(
 );
 router.get("/detail/:id/review", reviewController.getReviewController);
 router.delete(
-  "/detail/:id/review",
+  "/detail/:id/review/:question_id",
   validateToken.validateToken,
   reviewController.reviewDeleteController
 );
@@ -39,13 +35,13 @@ router.post(
 );
 router.get("/detail/:id/question", questionController.getQuestionController);
 router.delete(
-  "/detail/:id/question",
+  "/detail/:id/question/:question_id",
   validateToken.validateToken,
   questionController.questionDeleteController
 );
 
 // 상품리스트 / 검색 API
-router.get("/List", productListController.productList); 
+router.get("/List", productListController.productList);
 router.get("/search", productListController.productSearch);
 
 // 메인 신상품/추천 목록 리스트
