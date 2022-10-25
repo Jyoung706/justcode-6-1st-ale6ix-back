@@ -41,11 +41,25 @@
 <img src ="https://img.shields.io/badge/-GitHub-%23181717?style=for-the-badge&logo=GitHub&logoColor=white"/>&nbsp;
 <img src = "https://img.shields.io/badge/-Slack-%234A154B?style=for-the-badge&logo=Slack&logoColor=white"/>&nbsp;
 
+### API 설계
+|기능|Method|URL|
+|:---:|:---:|:---:|
+|계정 중복체크|GET|/users/signup?accout={체크할 계정}|
+|회원가입|POST|/users/signup|
+|상세페이지 조회|GET|/products/detail/:id|
+|리뷰 작성|POST|/products/detail/:id/review|
+|리뷰 조회|GET|/products/detail/:id/review|
+|리뷰 삭제|DELETE|/products/detail/:id/review?review_id={삭제할 리뷰id}|
+|문의 작성|POST|/products/detail/:id/question|
+|문의 정보 조회|GET|/products/detail/:id/question|
+|문의 삭제|DELETE|/products/detail/:id/question?question_id={삭제할 문의id}|
+
 
 ### 내가 구현한 기능
 
-#### 1. 회원가입 기능
-- 
+#### 1. 회원가입 기능 ( + 계정 중복확인 기능)
+- 유저가 서비스를 이용하기 위해 회원가입 하는 기능입니다.
+- 회원가입 시 중복확인 버튼을 누를 때 
 
 #### 2. nav 카테고리 불러오기
 
