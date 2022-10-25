@@ -46,13 +46,13 @@
 |:---:|:---:|:---:|
 |계정 중복체크|GET|/users/signup?accout={체크할 계정}|
 |회원가입|POST|/users/signup|
-|상세페이지 조회|GET|/products/detail/:id|
-|리뷰 작성|POST|/products/detail/:id/review|
-|리뷰 조회|GET|/products/detail/:id/review|
-|리뷰 삭제|DELETE|/products/detail/:id/review?review_id={삭제할 리뷰id}|
-|문의 작성|POST|/products/detail/:id/question|
-|문의 정보 조회|GET|/products/detail/:id/question|
-|문의 삭제|DELETE|/products/detail/:id/question?question_id={삭제할 문의id}|
+|상세페이지 조회|GET|/products/detail/{조회할 상품 id}|
+|리뷰 작성|POST|/products/detail/{리뷰 작성할 상품 id}/review|
+|리뷰 조회|GET|/products/detail/{리뷰 조회할 상품 id}/review|
+|리뷰 삭제|DELETE|/products/detail/{리뷰 삭제할 상품 id}/review/{삭제할 리뷰id}|
+|문의 작성|POST|/products/detail/{문의 작성할 상품 id}/question|
+|문의 정보 조회|GET|/products/detail/{문의 정보 조회할 상품 id}/question|
+|문의 삭제|DELETE|/products/detail/{문의 삭제할 상품 id}/question/{삭제할 문의id}|
 
 
 ### 내가 구현한 기능
