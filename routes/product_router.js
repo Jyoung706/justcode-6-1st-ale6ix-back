@@ -23,7 +23,7 @@ router.post(
 );
 router.get("/detail/:id/review", reviewController.getReviewController);
 router.delete(
-  "/detail/:id/review/:question_id",
+  "/detail/:id/review/:review_id",
   validateToken.validateToken,
   reviewController.reviewDeleteController
 );
